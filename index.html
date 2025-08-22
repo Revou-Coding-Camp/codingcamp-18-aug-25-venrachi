@@ -1,26 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To Do List Web App</title>
 
     <!-- Tailwind CSS -->
-     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body>
-    <!-- Hero Section -->
-    <header>
-        <h1>To Do List</h1>
-    </header>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="min-h-screen flex items-center justify-center bg-[#9DD9D2]">
+    <!-- Content Box -->
+    <div class="bg-[#FFF8F0] shadow-lg rounded-xl p-8 w-full max-w-3xl text-center text-[#392F5A]">
+      <!-- Hero Section -->
+      <header>
+        <h1 class="text-4xl font-bold text-[#392F5A]">To Do List</h1>
+      </header>
 
-    <!-- Main Content -->
-    <main></main>
+      <!-- Main Content -->
+      <main>
+      <!-- Add Task Form -->
+      <form class="py-6 flex flex-col md:flex-row items-center justify-center gap-3">
+        <input
+          type="text"
+          id="task-input"
+          placeholder="Add a New Task"
+          class="border border-[#392F5A] rounded-lg px-4 py-2 flex-1 focus:outline-none focus:ring-2 focus:ring-[#392F5A]"
+        />
+        <input
+          type="date"
+          id="date-input"
+          class="border border-[#392F5A] rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#392F5A]"
+        />
+        <button
+          type="button"
+          onclick="validateForm()"
+          class="bg-[#9DD9D2] text-[#392F5A] font-semibold px-4 py-2 rounded-lg hover:bg-[#392F5A] hover:text-white transition"
+        >
+          +
+        </button>
+      </form>
 
-    <footer>
+      <!-- Filter + Delete Row -->
+      <section class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <!-- Filter -->
+        <div class="flex items-center gap-2">
+          <label for="filter" class="font-medium">Filter:</label>
+          <select
+            id="filter"
+            onchange="filterTasks(this.value)"
+            class="border border-[#392F5A] rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#392F5A]"
+          >
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
 
-    </footer>
+        <!-- Delete Button -->
+        <button
+          onclick="deleteAll()"
+          class="bg-[#392F5A] text-white font-semibold px-5 py-2 rounded-lg hover:bg-[#9DD9D2] hover:text-[#392F5A] transition"
+        >
+          Delete All
+        </button>
+      </section>
+
+      <!-- Task List -->
+      <header>
+        <h2 class="text-2xl font-semibold pt-8 text-[#392F5A]">Task List</h2>
+      </header>
+      <table class="w-full border-collapse mt-4">
+        <thead>
+          <tr class="border-b border-[#9DD9D2] bg-[#9DD9D2]/20">
+            <th class="text-left py-2 px-4">Task</th>
+            <th class="text-left py-2 px-4">Due Date</th>
+            <th class="text-center py-2 px-4">Status</th>
+            <th class="text-center py-2 px-4">Action</th>
+          </tr>
+        </thead>
+        <tbody id="task-list">
+          <!-- Rows injected here -->
+        </tbody>
+      </table>
+    </main>
+
+      <footer class="pt-8 text-[#392F5A]">
+        <span>&copy; 2025 venrachi. All rights reserved.</span>
+      </footer>
+    </div>
+
     <!-- JS External -->
     <script src="js/script.js"></script>
-</body>
+  </body>
 </html>
